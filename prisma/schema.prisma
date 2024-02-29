@@ -19,7 +19,7 @@ model User {
   updatedAt DateTime @updatedAt @map("updated_at")
   email     String   @unique
   name      String?
-  passwword String
+  password  String
 
   workInterval  Int @default(45)
   breaInterval  Int @default(15)
