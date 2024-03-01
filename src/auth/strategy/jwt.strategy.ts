@@ -32,7 +32,7 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
 					tasks: true,
 				},
 			});
-			delete user.passwword;
+			delete user.password;
 			return user;
 		} catch (e) {}
 	}
