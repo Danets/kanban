@@ -113,7 +113,7 @@ export class AuthService {
 		if (!token) throw new UnauthorizedException('Invalid refresh token');
 
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
-		const { password, ...user } = await this.userService.getById(token);
+		const { password, ...user } = await this.userService.getById(token.id);
 
 		const tokens = this.generateTokens(user.id);
 

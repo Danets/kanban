@@ -8,8 +8,8 @@ import * as argon from 'argon2';
 export class UserService {
 	constructor(private prisma: PrismaService) {}
 
-	getById(id: string) {
-		return this.prisma.user.findUnique({
+	async getById(id: string) {
+		const user = await this.prisma.user.findUnique({
 			where: {
 				id,
 			},
@@ -17,6 +17,8 @@ export class UserService {
 				tasks: true,
 			},
 		});
+
+		return user;
 	}
 
 	async getByEmail(email: string) {
