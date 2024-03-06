@@ -10,9 +10,9 @@ import {
 } from '@nestjs/common';
 
 import { UserService } from './user.service';
-import { AuthDTO } from 'src/auth/dto/auth.dto';
 import { Auth } from 'src/auth/decorators/auth.decorator';
 import { GetUser } from 'src/auth/decorators/user.decorator';
+import { UserDTO } from './dto/user.dto';
 
 @Controller('user/profile')
 export class UserController {
@@ -29,7 +29,7 @@ export class UserController {
 	@Put()
 	@HttpCode(HttpStatus.ACCEPTED)
 	@Auth()
-	async update(@GetUser('id') id: string, @Body() dto: AuthDTO) {
+	async update(@GetUser('id') id: string, @Body() dto: UserDTO) {
 		return this.userService.update(id, dto);
 	}
 }

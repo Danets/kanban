@@ -1,13 +1,20 @@
 import { Injectable } from '@nestjs/common';
-import { AuthDTO } from 'src/auth/dto/auth.dto';
-import { PrismaService } from 'src/prisma/prisma.service';
 
 import * as argon from 'argon2';
 import { startOfDay, subDays } from 'date-fns';
 
+import { PrismaService } from 'src/prisma/prisma.service';
+
+import { AuthDTO } from 'src/auth/dto/auth.dto';
+import { UserDTO } from './dto/user.dto';
+import { TaskService } from 'src/task/task.service';
+
 @Injectable()
 export class UserService {
-	constructor(private prisma: PrismaService) {}
+	constructor(
+		private prisma: PrismaService,
+		private taskService: TaskService,
+	) {}
 
 	async getById(id: string) {
 		const user = await this.prisma.user.findUnique({
@@ -43,7 +50,7 @@ export class UserService {
 		});
 	}
 
-	async update(id: string, dto: AuthDTO) {
+	async update(id: string, dto: UserDTO) {
 		let data = dto;
 		if (dto.password) {
 			data = { ...dto, password: await argon.hash(dto.password) };
@@ -53,6 +60,11 @@ export class UserService {
 				id,
 			},
 			data,
+			select: {
+				id: true,
+				email: true,
+				name: true,
+			},
 		});
 	}
 
@@ -64,13 +76,7 @@ export class UserService {
 
 		const totalTasks = profile.tasks.length;
 
-		// Todo Task.servise
-		const completedTasks = await this.prisma.task.count({
-			where: {
-				userId: id,
-				isCompleted: true,
-			},
-		});
+		const completedTasks = await this.taskService.getCompletedTasks(id);
 
 		const todayStart = startOfDay(new Date());
 		const weekStart = startOfDay(subDays(new Date(), 7));
