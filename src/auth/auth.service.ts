@@ -4,12 +4,10 @@ import {
 	NotFoundException,
 	UnauthorizedException,
 } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 
 import * as argon from 'argon2';
 
-import { PrismaService } from 'src/prisma/prisma.service';
 import { UserService } from 'src/user/user.service';
 import { AuthDTO } from './dto/auth.dto';
 import { Response } from 'express';
@@ -20,10 +18,8 @@ export class AuthService {
 	REFRESH_TOKEN_NAME = 'refreshToken';
 
 	constructor(
-		private prisma: PrismaService,
 		private userService: UserService,
 		private jwt: JwtService,
-		private config: ConfigService,
 	) {}
 
 	async register(dto: AuthDTO) {
