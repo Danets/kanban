@@ -4,7 +4,6 @@ import { IsOptional, IsString, IsBoolean, IsEnum } from 'class-validator';
 
 export class TaskDTO {
 	@IsString()
-	@IsOptional()
 	name: string;
 
 	@IsBoolean()

@@ -1,0 +1,12 @@
+import { Global, Module } from '@nestjs/common';
+import { TimerService } from './timer.service';
+import { TimerController } from './timer.controller';
+import { PrismaService } from 'src/prisma/prisma.service';
+
+@Global()
+@Module({
+	controllers: [TimerController],
+	providers: [TimerService, PrismaService],
+	exports: [TimerService],
+})
+export class TimerModule {}
