@@ -21,9 +21,9 @@ model User {
   name      String?
   password  String
 
-  workInterval  Int @default(45)
-  breaInterval  Int @default(15)
-  intervalCount Int @default(7)
+  workInterval  Int @default(45) @map("work_interval")
+  breakInterval Int @default(15) @map("break_interval")
+  intervalCount Int @default(7) @map("interval_count")
 
   tasks            Task[]
   timeBlocks       TimeBlock[]
@@ -83,7 +83,7 @@ model PomodoroRound {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  totalSeconds Int
+  totalSeconds Int     @map("total_seconds")
   isCompleted  Boolean @default(false) @map("is_completed")
 
   sessionId       String          @map("session_id")
