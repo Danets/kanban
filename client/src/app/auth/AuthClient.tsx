@@ -58,6 +58,14 @@ export function AuthClient() {
 				/>
 				{errors.email && <span>Email is required</span>}
 
+				{!isLoginForm && (
+					<input
+						placeholder='Enter name:'
+						type='text'
+						{...register('name')}
+					/>
+				)}
+
 				<input
 					placeholder='Enter password: '
 					type='password'
