@@ -6,6 +6,9 @@ import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
+import { Button } from '@/components/ui/buttons/Button'
+import { Field } from '@/components/ui/fields/Field'
+
 import { IAuthForm } from '@/types/auth.types'
 
 import { DASHBOARD_PAGES } from '@/config/pages-url.config'
@@ -44,14 +47,17 @@ export function AuthClient() {
 	return (
 		<div className='flex min-h-screen'>
 			<form
-				className='w-1/4 m-auto shadow bg-sidebar rounded-xl p-layout'
+				className='m-auto shadow bg-sidebar rounded-xl p-layout'
 				onSubmit={handleSubmit(onSubmit)}
 			>
 				<h3>Auth</h3>
 
-				<input
+				<Field
+					id='email'
+					label='Email:'
 					placeholder='Enter email:'
 					type='email'
+					extra='mb-4'
 					{...register('email', {
 						required: 'Email is required!'
 					})}
@@ -59,16 +65,22 @@ export function AuthClient() {
 				{errors.email && <span>Email is required</span>}
 
 				{!isLoginForm && (
-					<input
+					<Field
+						id='name'
+						label='Name:'
 						placeholder='Enter name:'
 						type='text'
+						extra='mb-4'
 						{...register('name')}
 					/>
 				)}
 
-				<input
-					placeholder='Enter password: '
+				<Field
+					id='password'
+					label='Password:'
+					placeholder='Enter password:'
 					type='password'
+					extra='mb-6'
 					{...register('password', {
 						required: 'Password is required!'
 					})}
@@ -76,8 +88,8 @@ export function AuthClient() {
 				{errors.password && <span>Password is required</span>}
 
 				<div className='flex items-center gap-5 justify-center'>
-					<button onClick={() => setIsLoginForm(true)}>Login</button>
-					<button onClick={() => setIsLoginForm(false)}>Register</button>
+					<Button onClick={() => setIsLoginForm(true)}>Login</Button>
+					<Button onClick={() => setIsLoginForm(false)}>Register</Button>
 				</div>
 			</form>
 		</div>
