@@ -21,7 +21,7 @@ export class UserController {
 	@Get()
 	@HttpCode(HttpStatus.OK)
 	@Auth()
-	getProfile(@GetUser('id') id: string) {
+	async getProfile(@GetUser('id') id: string) {
 		return this.userService.getProfile(id);
 	}
 

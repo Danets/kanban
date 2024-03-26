@@ -53,17 +53,17 @@ export class AuthService {
 	private generateTokens(userId: string) {
 		const data = { id: userId };
 
-		const access_token = this.jwt.sign(data, {
+		const accessToken = this.jwt.sign(data, {
 			expiresIn: '1h',
 		});
 
-		const refresh_token = this.jwt.sign(data, {
+		const refreshToken = this.jwt.sign(data, {
 			expiresIn: '7d',
 		});
 
 		return {
-			access_token,
-			refresh_token,
+			accessToken,
+			refreshToken,
 		};
 	}
 
