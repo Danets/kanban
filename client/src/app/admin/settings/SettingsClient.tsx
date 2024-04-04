@@ -9,6 +9,8 @@ import { TypeUserForm } from '@/types/auth.types'
 
 import { useInitialData } from './useInitialData'
 import { useUpdateSettings } from './useUpdateSettings'
+import { getSettings, updateSettings } from '@/lib/features/settingsSlice'
+import { useAppDispatch, useAppStore } from '@/lib/hooks'
 
 export function SettingsClient() {
 	const { register, handleSubmit, reset } = useForm<TypeUserForm>({
@@ -17,15 +19,23 @@ export function SettingsClient() {
 
 	useInitialData(reset)
 
+	const dispatch = useAppDispatch()
+
 	const { isPending, mutate } = useUpdateSettings()
 
-	const onSubmit: SubmitHandler<TypeUserForm> = data => {
-		const { password, ...rest } = data
+	const onSubmit: SubmitHandler<TypeUserForm> = async data => {
+		try {
+			const { password, ...rest } = data
 
-		mutate({
-			...rest,
-			password: password || undefined
-		})
+			await mutate({
+				...rest,
+				password: password || undefined
+			})
+
+			dispatch(updateSettings(data))
+		} catch (error) {
+			console.error('Error during query:', error)
+		}
 	}
 
 	return (
@@ -93,7 +103,7 @@ export function SettingsClient() {
 							label='Intervals count (max 10): '
 							placeholder='Enter intervals count (max 10): '
 							isNumber
-							{...register('intervalsCount', {
+							{...register('intervalCount', {
 								valueAsNumber: true
 							})}
 							extra='mb-6'

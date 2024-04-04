@@ -4,8 +4,9 @@ import { Toaster } from 'sonner'
 
 import { SITE_NAME } from '@/constants/seo'
 
+import { QueryProvider } from './QueryProvider'
+import { StoreProvider } from './StoreProvider'
 import './globals.scss'
-import { Providers } from './providers'
 
 const noto = Noto_Sans({
 	subsets: ['cyrillic', 'latin'],
@@ -31,15 +32,17 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body className={noto.className}>
-				<Providers>
-					{children}
+				<StoreProvider>
+					<QueryProvider>
+						{children}
 
-					<Toaster
-						theme='dark'
-						position='bottom-right'
-						duration={1500}
-					/>
-				</Providers>
+						<Toaster
+							theme='dark'
+							position='bottom-right'
+							duration={1500}
+						/>
+					</QueryProvider>
+				</StoreProvider>
 			</body>
 		</html>
 	)
