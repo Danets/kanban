@@ -26,15 +26,12 @@ export const settingsSlice = createSlice({
 	name: 'settings',
 	initialState,
 	reducers: {
-		getSettings: (state, action: PayloadAction<TypeUserForm>) => {
-			state.settings = action.payload
-		},
 		updateSettings: (state, action: PayloadAction<TypeUserForm>) => {
 			state.settings = action.payload
 		}
 	}
 })
 
-export const { getSettings, updateSettings } = settingsSlice.actions
+export const { updateSettings } = settingsSlice.actions
 
 export default settingsSlice.reducer

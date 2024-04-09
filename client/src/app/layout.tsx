@@ -6,6 +6,7 @@ import { SITE_NAME } from '@/constants/seo'
 
 import { QueryProvider } from './QueryProvider'
 import { StoreProvider } from './StoreProvider'
+import { ThemeProvider } from './ThemeProvider'
 import './globals.scss'
 
 const noto = Noto_Sans({
@@ -34,13 +35,15 @@ export default function RootLayout({
 			<body className={noto.className}>
 				<StoreProvider>
 					<QueryProvider>
-						{children}
+						<ThemeProvider>
+							{children}
 
-						<Toaster
-							theme='dark'
-							position='bottom-right'
-							duration={1500}
-						/>
+							<Toaster
+								theme='dark'
+								position='bottom-right'
+								duration={1500}
+							/>
+						</ThemeProvider>
 					</QueryProvider>
 				</StoreProvider>
 			</body>

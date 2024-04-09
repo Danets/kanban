@@ -9,7 +9,7 @@ import { TypeUserForm } from '@/types/auth.types'
 
 import { useInitialData } from './useInitialData'
 import { useUpdateSettings } from './useUpdateSettings'
-import { getSettings, updateSettings } from '@/lib/features/settingsSlice'
+import { updateSettings } from '@/lib/features/settingsSlice'
 import { useAppDispatch, useAppStore } from '@/lib/hooks'
 
 export function SettingsClient() {
