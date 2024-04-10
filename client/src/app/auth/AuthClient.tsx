@@ -48,7 +48,7 @@ export function AuthClient() {
 	return (
 		<div className='flex min-h-screen'>
 			<form
-				className='m-auto shadow bg-sidebar rounded-xl p-layout'
+				className='m-auto shadow bg-sidebar rounded-xl p-layout text-white'
 				onSubmit={handleSubmit(onSubmit)}
 			>
 				<Heading title='Auth' />

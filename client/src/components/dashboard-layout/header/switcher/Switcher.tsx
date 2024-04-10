@@ -14,7 +14,7 @@ export function Switcher() {
 	return (
 		<Button onClick={toggleTheme}>
 			{isLightTheme ? <Moon /> : <Sun />}
-			{isLightTheme ? 'Light' : 'Dark'} Theme
+			{isLightTheme ? 'Light' : 'Dark'}
 		</Button>
 	)
 }

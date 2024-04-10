@@ -9,7 +9,7 @@ export type ThemeProviderProps = {
 }
 
 const ThemeProvider: FC<ThemeProviderProps> = ({ children }) => {
-	const [theme, setTheme] = useState<Theme>(Theme.LIGHT)
+	const [theme, setTheme] = useState<Theme>(Theme.DARK)
 	const [mounted, setMounted] = useState(false)
 
 	const toggleTheme = () =>
