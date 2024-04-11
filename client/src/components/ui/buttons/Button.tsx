@@ -11,7 +11,7 @@ export function Button({
 	return (
 		<button
 			className={cn(
-				'flex items-center linear rounded-lg bg-cyan-500 border border-primary py-2 px-2 text-base font-medium transition hover:bg-primary active:bg-brand-700',
+				'flex items-center gap-2.5 linear rounded-lg bg-cyan-500 border border-primary py-2 px-2 text-base font-medium transition hover:bg-primary focus:bg-primary active:bg-brand-700',
 				className
 			)}
 			{...rest}

@@ -14,7 +14,7 @@ export function AdminClient() {
 			{data?.statistics.length ? (
 				data.statistics.map(statistic => (
 					<div
-						className='bg-border/5 rounded p-layout text-center hover:-translate-y-3 transition-transform duration-500'
+						className='bg-border/5 rounded p-layout text-center hover:translate-y-3 transition-transform duration-500 cursor-pointer'
 						key={statistic.label}
 					>
 						<div className='text-xl'>{statistic.label}</div>
